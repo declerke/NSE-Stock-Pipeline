@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: Raw OHLCV price data ingested from Yahoo Finance
+    tables:
+      - name: nse_prices
+        description: Daily OHLCV records for NSE-listed equities
+        columns:
+          - name: ticker
+            description: Yahoo Finance ticker symbol (e.g. SCOM.NR)
+            tests: [not_null]
+          - name: trade_date
+            description: Trading day date
+            tests: [not_null]
+          - name: close
+            description: Adjusted closing price in KES
+            tests: [not_null]
+          - name: volume
+            description: Number of shares traded
+            tests: [not_null]

@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: stg_nse_prices
+    description: Cleaned and typed NSE OHLCV prices sourced from raw ingestion
+    columns:
+      - name: ticker
+        description: Yahoo Finance ticker symbol
+        tests: [not_null]
+      - name: trade_date
+        description: Trading day date
+        tests: [not_null]
+      - name: close_price
+        description: Adjusted closing price in KES
+        tests: [not_null]
+      - name: volume
+        description: Shares traded on the day
+        tests: [not_null]
+
+  - name: daily_returns
+    description: Daily and log returns per ticker with company metadata
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: trade_date
+        tests: [not_null]
+      - name: daily_return_pct
+        description: Percentage price change from prior close
+        tests: [not_null]
+      - name: log_return_pct
+        description: Log return as percentage; additive across periods
+        tests: [not_null]
+
+  - name: moving_averages
+    description: 7-day, 20-day, and 50-day moving averages with a trend signal
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: trade_date
+        tests: [not_null]
+      - name: ma_7d
+        tests: [not_null]
+      - name: trend_signal
+        description: "Bullish / Bearish / Neutral based on close vs 20d MA"
+        tests:
+          - accepted_values:
+              values: ["Bullish", "Bearish", "Neutral"]
+
+  - name: volatility_metrics
+    description: Rolling 20-day realised volatility and annualised volatility per ticker
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: trade_date
+        tests: [not_null]
+      - name: rolling_vol_20d
+        description: 20-day rolling standard deviation of daily returns (%)
+        tests: [not_null]
+      - name: annualised_vol
+        description: Annualised volatility assuming 252 trading days
+        tests: [not_null]

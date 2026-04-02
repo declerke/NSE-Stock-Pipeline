@@ -1,0 +1,16 @@
+.env
+*.pyc
+__pycache__/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+airflow/logs/
+airflow/plugins/
+dbt_nse/target/
+dbt_nse/dbt_packages/
+dbt_nse/logs/
+*.log
+.DS_Store
