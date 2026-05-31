@@ -152,7 +152,7 @@ nse-stock-pipeline/
 ### 1. Clone and configure
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/declerke/NSE-Stock-Pipeline.git
 cd nse-stock-pipeline
 cp .env.example .env
 ```

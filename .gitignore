@@ -1,6 +1,7 @@
 .env
 *.pyc
 __pycache__/
+dbt_nse/.user.yml
 .venv/
 venv/
 *.egg-info/
